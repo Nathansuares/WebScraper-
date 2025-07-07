@@ -16,11 +16,11 @@ async def crawl_java_docs(url):
         if no_results:
             print("⚠️ No data found.")
         else:
-            save_venues_to_csv(table_data, "ArrayList_methods.csv")
-            print(f"✅ Saved {len(table_data)} entries to 'ArrayList_methods.csv'")
+            save_venues_to_csv(table_data, "Stack_methods.csv")
+            print(f"✅ Saved {len(table_data)} entries to 'Stack_methods.csv'")
 
 async def main():
-    url = "https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html"
+    url = "https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html"
     await crawl_java_docs(url)
 
 if __name__ == "__main__":
