@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
 async def fetch_and_process_custom_table(crawler, url):
-    result = await crawler.arun(url)  # ✅ Final fix
+    result = await crawler.arun(url)  
     soup = BeautifulSoup(result.html, "html.parser")
 
     rows = soup.select(".blockList .memberSummary tbody tr")
@@ -20,7 +20,7 @@ async def fetch_and_process_custom_table(crawler, url):
                 "description": description
             })
         except Exception as e:
-            print("❌ Error processing row:", e)
+            print("Error processing row:", e)
             continue
 
     return table_data, len(table_data) == 0

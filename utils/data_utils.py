@@ -10,4 +10,4 @@ def save_venues_to_csv(data, filename):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
-    print(f"📁 CSV saved as '{filename}'")
+    print(f"CSV saved as '{filename}'")
