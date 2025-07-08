@@ -14,10 +14,10 @@ async def crawl_java_docs(url):
         table_data, no_results = await fetch_and_process_custom_table(crawler, url)
 
         if no_results:
-            print("⚠️ No data found.")
+            print("No data found.")
         else:
             save_venues_to_csv(table_data, "dataset/StringBuffer_methods.csv")
-            print(f"✅ Saved {len(table_data)} entries to 'StringBuffer_methods.csv'")
+            print(f"Saved {len(table_data)} entries to 'StringBuffer_methods.csv'")
 
 async def main():
     url = "https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html"
