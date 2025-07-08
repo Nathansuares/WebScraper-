@@ -1,9 +1,18 @@
 import asyncio
+import sys
+from config import JAVADOC_URL 
 from crawl4ai import AsyncWebCrawler
 from utils.scraper_utils import fetch_and_process_custom_table
 from utils.data_utils import save_venues_to_csv
+import os
 
 async def crawl_java_docs(url):
+    # Extract class name from the URL
+    class_name = os.path.basename(url).replace(".html", "")
+
+    # Build dynamic filename
+    filename = f"dataset/{class_name}_methods.csv"
+
     async with AsyncWebCrawler(
         headless=True,
         disable_images=True,
@@ -16,12 +25,15 @@ async def crawl_java_docs(url):
         if no_results:
             print("No data found.")
         else:
-            save_venues_to_csv(table_data, "dataset/StringBuffer_methods.csv")
-            print(f"Saved {len(table_data)} entries to 'StringBuffer_methods.csv'")
+            save_venues_to_csv(table_data, filename)
+            print(f"Saved {len(table_data)} entries to '{filename}'")
+
+            
 
 async def main():
-    url = "https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html"
+    url = sys.argv[1] if len(sys.argv) > 1 else JAVADOC_URL
     await crawl_java_docs(url)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
