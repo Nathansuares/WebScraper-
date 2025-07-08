@@ -7,10 +7,9 @@ from utils.data_utils import save_venues_to_csv
 import os
 
 async def crawl_java_docs(url):
-    # Extract class name from the URL
+    
     class_name = os.path.basename(url).replace(".html", "")
 
-    # Build dynamic filename
     filename = f"dataset/{class_name}_methods.csv"
 
     async with AsyncWebCrawler(
